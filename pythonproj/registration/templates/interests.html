@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <form action="/regestration/addinterests/" method="POST">{% csrf_token %}
+    {% for cat in cats %}
+        <input type="checkbox" name="interests[]" value="{{cat.categoryname}}"/>{{cat.categoryname}}<br>
+    {% endfor %}
+    <!--<input type="checkbox" name="interests[]" value="WebDevlopment"/>WebDevlopment<br>
+    <input type="checkbox" name="interests[]" value="DataScience"/>DataScience<br>-->
+    <input type="hidden" name="user" value="{{user.name}}"/><br>
+    <input type="submit" value="OK"/>
+    </form>
+</body>
+{% endblock %}

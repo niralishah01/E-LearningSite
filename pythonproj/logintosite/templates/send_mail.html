@@ -1,0 +1,19 @@
+{%extends 'base.html' %}
+{% block content %}
+<body style="background-color: darkseagreen;">
+    To:<h2>{{user.emailID}}</h2>
+    <h3>You're receiving this email because you have requested to change password for your user account at 127.0.0.1:8000.
+        <br><br>
+        Please go to the following page and create a new password:<br>
+        <form action="/logintosite/passwordresetform/" method="POST">{% csrf_token %}
+            <input type="hidden" name="user" value="{{user.emailID}}"/>
+            <input type="submit" value="Reset Password"/>
+        </form>
+        
+        <!--Your username, in case you’ve forgotten: {{user.emailID}}-->
+    </h3>    
+    <h4>Thanks for using our site!
+        <br>
+        The 127.0.0.1:8000 team</h4>
+</body>
+{% endblock %}

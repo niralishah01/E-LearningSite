@@ -1,0 +1,15 @@
+.button2{
+    background-color: #ffffff;
+    color:black;
+    padding:10px 18px;
+  font-weight: bold;
+  display:inline-block;
+  text-align: right;
+  border:2px solid #008CBA;
+  width: fit-content;
+}
+.button2:hover {
+    background-color: rgb(0, 186, 15);
+    color: white;
+  }
+ 

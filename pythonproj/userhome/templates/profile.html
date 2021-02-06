@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    {% block content %}
+    <body style="background-image: linear-gradient(to bottom right,blue,cyan);">
+        {% load static %}  
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/style2.css' %}" /> 
+        <h1 style="color:white; text-align: center;">Welcome {{user.name}}!!!</h1>
+        <button class="button2" onclick="location.href='/userhome/gotouserhome/'">Home</button>
+        <button class="button2" onclick="location.href='/userhome/viewprofile/'">Profile</button>
+        <button class="button2" onclick="location.href='/userhome/mycourses/'">My Courses</button>
+        <form action="/logintosite/logout/" method="POST">{% csrf_token %}
+        <input type="hidden" name="name" value="{{user.name}}"/>
+        <input class="button2" type="submit" value="logout"/>
+        </form>
+        <img src="{% static 'home/images/eLearning4.jpg' %}" style="width: 100%; height: 300px;">
+        <center>
+            <h1>Your Profile</h1>
+            <table border="2" bgcolor="lightcyan">
+                <tr>
+                    <td>Name:</td>
+                    <td>{{user.name}}</td>
+                </tr>
+                <tr>
+                    <td>EmailID:</td>
+                    <td>{{user.emailID}}</td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>{{user.password}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <form action="/registration/delete/" method="POST">{% csrf_token %}
+                        <input type="hidden" name="name" value="{{user.name}}">
+                        <input type="submit" value="Delete Account" placeholder="If you delete your account,your all course history will be deleted.">  
+                        </form>
+                    </td>
+                </tr>
+            </table> 
+        </center>
+        {% endblock %}
+        </body>
+        </html>

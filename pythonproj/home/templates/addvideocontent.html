@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<html>
+    <head>
+        <title>coursedetails</title>
+    </head>
+    {% block content %}
+    <body style="background-image: linear-gradient(to bottom right,blue,cyan);">
+        {%load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style2.css' %}" />
+        <img src="{% static 'home/images/eLearning3.jpg' %}" alt="elearn" width="100%" height="300px">
+        <br>
+        <button style="float: inline-start;" class="button2" name="Home" value="Home" onclick="location.href='/home/adminhome'">Home</button>
+        <br>
+        <br>
+        <center>
+        <form action="/home/addvideocoursecontent/" enctype="multipart/form-data" method="POST">{% csrf_token %}>
+        <table bgcolor="orange">
+            <tr>
+                <td>Course:</td>
+                    <td>
+                    <select name="course">
+                    {% if course %}
+                        {% for cours in course %}
+                            <option value="{{cours.cname}}">{{cours.cname}}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+                </td>
+            </tr>
+                <td>Video File:</td>
+                <td><input type="file" name="video"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="add"/></td>
+            </tr>
+        </table>
+        </form>
+        </center>
+    </body>
+    {% endblock %}
+</html>

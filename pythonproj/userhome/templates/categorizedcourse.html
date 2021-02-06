@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    {% block content %}
+    <body style="background-image: linear-gradient(to bottom right,blue,cyan);">
+        {% load static %} 
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/style2.css' %}" />  
+        <h1 style="color:white; text-align: center;">Welcome {{user}}!!!</h1>
+        <button class="button2" onclick="location.href='/userhome/gotouserhome/'">Home</button>
+        <button class="button2" onclick="location.href='/userhome/viewprofile/'">Profile</button>
+        <button class="button2" onclick="location.href='/userhome/mycourses/'">My Courses</button>
+        <form action="/logintosite/logout/" method="POST">{% csrf_token %}
+        <input type="hidden" name="name" value="{{user.name}}"/>
+        <input class="button2" type="submit" value="logout"/>
+        </form>
+        <img src="{% static 'home/images/eLearning4.jpg' %}" style="width: 100%; height: 300px;">
+{% if course %}
+        <br>
+        <br>
+            <table border="2">
+                <tr>
+                    <th colspan="2">
+                        Available Courses
+                    </th>
+                </tr>
+                {% for c in course %}
+                    <tr>
+                        <form action="/userhome/enroll/" method="POST">{% csrf_token %}
+                        <td>
+                            <img src="{{c.img_file.url}}" alt="{{c.cname}}" style="width: 300px; height: 250px;">
+                        </td>
+                        <td>
+                        <input type="hidden" name="cname" value="{{c.cname}}">
+                            <input type="submit" value="enroll">
+                        </td>
+                        </form>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </body>
+    {% endblock %}
+
+</html>

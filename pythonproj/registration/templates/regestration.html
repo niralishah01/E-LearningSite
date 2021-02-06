@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        a{
+            float: right;
+            font-size: 15px;
+            color: black;
+        }
+    </style>
+    </head>
+    {% block content %}
+    {% load static %}
+    <body background="{% static 'regestration/images/eLearning2.png' %}">
+    {% if form.errors %}
+        <p class="error"> Invalid Details </p>
+    {% endif %}
+        <form action="/registration/addregsdetails/" method = "post">{% csrf_token %}>
+            <h3 style="color: maroon; text-align: center;">Learn skills!!</h3>
+            <h4 style="color: maroon; text-align: center;">Grab your opportunities here to learn...</h4>
+            <h4 style="color: maroon; text-align: center;">Join for free now....</h4>
+            {% if msg5 %}
+            <h3 style="color: red; align-content: center;text-align: center;">{{msg5}}</h3>
+            {% endif %}
+            <table border="2" align="center" bgcolor="lightcyan">
+            <tr>
+                <!--<td><a href="/logintosite/login/">Login</a></td>-->
+                <td><a href="/logintosite/login/">Login</a></td>
+                <td><a href="/registration/getregsdetails/">Sign Up</a></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" id="name" placeholder="your name" required></td>
+            </tr>
+            <tr>
+                <td>EmailID:</td>
+                <td><input type="email" name="email" id="email" placeholder="abc@gmail.com" required/></td>
+            </tr>
+            {% if msg3 %}
+            <tr>
+                <td colspan="2"><p style= color:red>*{{msg3}}</p></td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="passwd" id="password" placeholder="6-15 characters" required/></td>
+            </tr>
+            {% if msg4 %}
+            <tr>
+                <td colspan="2"><p style= color:red>*{{msg4}}</p></td>
+            </tr>
+            {% endif %}
+            {% if msg1 %}
+            <tr>    
+                <td colspan="2"><p style= color:red>*{{msg1}}</p></td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Repassword:</td>
+                <td><input type="password" name="repasswd" id="repasswd" placeholder="same as password" required/></td>
+            </tr>
+            {% if msg2 %}
+            <tr>
+                <td colspan="2"><p style= color:red>*{{msg2}}</p></td>
+            </tr>    
+            {% endif %}
+            <tr>
+                <td colspan="2"><input type="submit" name="submit" id="submit" value="submit"/></td>
+            </tr> 
+        </form>
+    </body>
+    {% endblock %}
+</html>

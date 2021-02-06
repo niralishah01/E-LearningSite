@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<body style="background-image: linear-gradient(to bottom right,blue,cyan);">
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style2.css' %}" />  
+    <h1 style="color:white; text-align: center;">Welcome {{user}}!!!</h1>
+    <button class="button2" onclick="location.href='/userhome/gotouserhome/'">Home</button>
+    <button class="button2" onclick="location.href='/userhome/viewprofile/'">Profile</button>
+    <button class="button2" onclick="location.href='/userhome/mycourses/'">My Courses</button>
+    <form action="/logintosite/logout/" method="POST">{% csrf_token %}
+    <input type="hidden" name="name" value="{{user.name}}"/>
+    <input class="button2" type="submit" value="logout"/>
+    </form>
+    <img src="{% static 'home/images/eLearning4.jpg' %}" style="width: 100%; height: 300px;">
+    {% if content %}
+        {% for c in content %}
+        <video width='320' height= '240' controls>
+            <source src="{{c.video_file.url}}">
+                Your browser does not support the video tag.
+        </video>
+        {% endfor %}
+    {% else %}
+    <h2>No video is available for {{cname}} course..</h2>
+    You can mark it as completed.
+    {% endif %}
+        <form action="/userhome/viewstatus/" method="POST">{% csrf_token %}
+        <input type="hidden" name="cname" value="{{cname}}">
+        <input type="hidden" name="video" value="video">
+        <input type="submit" value="mark as completed">
+        </form>
+</body>
+</body>
+{% endblock %}

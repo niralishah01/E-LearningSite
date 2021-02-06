@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<body style="background-image: linear-gradient(to bottom right,blue,cyan);">
+    {%load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style2.css' %}" />
+        <img src="{% static 'home/images/eLearning3.jpg' %}" alt="elearn" width="100%" height="300px">
+        {% if msg %}
+            <p style="color:">{{msg}}</p>
+        {% endif %}
+        <center>
+        <button style="float: inline-start;" class="button2" name="AddCourses" value="Add Courses" onclick="location.href='/home/getcoursedetails/'">Add Courses</button>
+        <!--<button style="float: inline-start;" class="button2" name="ShowCourseContent" onclick="location.href='/home/showcoursecontent'">ShowCourseContent</button>-->
+        <input type="button" style="float: inline-start;" class="button2" name="ShowCourses" value="ShowCourses" onclick="location.href='/home/showcourses/'"><br>
+        <input type="button" style="float: inline-start;" class="button2" name="AddCourseContent" value="Add CourseContent" onclick="location.href='/home/getcoursecontent/'">
+        <input type="button" style="float: inline-start;" class="button2" name="AddVideoCourseContent" value="AddVideoCourseContent" onclick="location.href='/home/getvideocoursecontent/'">
+        <input type="button" style="float: inline-start;" class="button2" name="DeleteCourseContent" value="Delete CourseContent" onclick="location.href='/home/delete/'"><br>
+        <input type="button" style="float: inline-start;" class="button2" name="category" value="Home" onclick="location.href='/home/adminhome/'">
+        <input type="button" style="float: inline-start;" class="button2" name="category" value="Logout" onclick="location.href='/logintosite/logoutadmin/'"><br>
+        </center>
+</body>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<html>
+    <head>
+        <title>login</title>
+    </head>
+{% block content %}
+{% if form.errors %}
+<p class="error"> Invalid Login Details</p>
+{% endif %}
+{% load static %}
+<body background="{% static 'logintosite/images/eLearning11.png' %}" style="width: 100%;">
+    <center>
+    
+    {% load static %}
+    <img src="{% static 'logintosite/images/user-profile.png' %}" style="width: 100px; height:100px;" >
+    <form action="/logintosite/authentication/" method="POST">{% csrf_token %}>
+    {% if msg %}
+    <h4 style="color: red;">*{{msg}}</h4>
+    {% endif %}
+    <table border="2" bgcolor="lightcyan">
+        <tr>
+            <td><a href ="/logintosite/login/">Login</a></td>
+            <td><a href="/registration/getregsdetails/">Sign Up</a></td>
+        </tr>
+        <tr>
+        <td>Username:</td>
+        <td><input type="email" name="email" placeholder="emailID" required/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password" placeholder="password" required/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="login"/></td>
+            <td><a href="/logintosite/forgotpassword/">Forgot Password</a></td>
+        </tr>
+    </form>
+    </center>
+</body>
+{% endblock %}
+</html>
